@@ -20,18 +20,48 @@ module.exports = {
         name: 'Very Austin',
         short_name: 'veryaustin',
         start_url: '/',
-        background_color: '#663399',
-        theme_color: '#663399',
+        background_color: '#FFFFFF',
+        theme_color: '#FFFFFF',
         display: 'minimal-ui',
-        icon: 'src/images/veryaustin-icon.png',
+        icon: 'src/images/favicons/favicon.svg',
         icons: [
           {
-            src: `/favicons/android-chrome-192x192.png`,
+            src: `/favicons/favicon-48x48.png`,
+            sizes: `48x48`,
+            type: `image/png`,
+          },
+          {
+            src: `/favicons/favicon-72x72.png`,
+            sizes: `72x72`,
+            type: `image/png`,
+          },
+          {
+            src: `/favicons/favicon-96x96.png`,
+            sizes: `96x96`,
+            type: `image/png`,
+          },
+          {
+            src: `/favicons/favicon-144x144.png`,
+            sizes: `144x144`,
+            type: `image/png`,
+          },
+          {
+            src: `/favicons/favicon-192x192.png`,
             sizes: `192x192`,
             type: `image/png`,
           },
           {
-            src: `/favicons/android-chrome-512x512.png`,
+            src: `/favicons/favicon-256x256.png`,
+            sizes: `256x256`,
+            type: `image/png`,
+          },
+          {
+            src: `/favicons/favicon-384x384.png`,
+            sizes: `384x384`,
+            type: `image/png`,
+          },
+          {
+            src: `/favicons/favicon-512x512.png`,
             sizes: `512x512`,
             type: `image/png`,
           },
@@ -40,5 +70,3 @@ module.exports = {
     },
   ],
 }
-
-// TODO: Update gatsby plugin manifest icon, icons, background_color, & theme color for offline use.
