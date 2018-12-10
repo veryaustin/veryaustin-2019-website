@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 
-import Layout from '../components/layout'
 import GridItem from '../components/GridItem'
 
 const StyledDiv = styled.div`
@@ -11,14 +10,14 @@ const StyledDiv = styled.div`
   grid-gap: 10px;
   background-color: ${props => props.theme.background};
   transition-property: background-color;
-  transition-duration: 0.5s;
-  transition-timing-function: ease-in;
+  /* transition-duration: 0.2s;
+  transition-timing-function: ease-in; */
   color: #444;
 }
 `
 
 const IndexPage = () => (
-  <Layout>
+  <>
     <h1>Testing Layout Component</h1>
     <Link to="/page-2/">Go to page 2</Link>
     <StyledDiv>
@@ -29,7 +28,7 @@ const IndexPage = () => (
       <GridItem>E</GridItem>
       <GridItem>F</GridItem>
     </StyledDiv>
-  </Layout>
+  </>
 )
 
 export default IndexPage

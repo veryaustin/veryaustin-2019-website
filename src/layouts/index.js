@@ -2,21 +2,38 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
-import { ThemeProvider } from 'styled-components'
-import styled from 'styled-components'
-import Header from './header'
+import Header from '../components/header'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import theme from '../styles/theme'
-import '../styles/fonts.scss'
+import '../styles/main.scss'
 
-// const GlobalStyled = createGlobalStyle`
-// body {
-//   font-family: 'HelveticaNeue-Thin', Helvetica, Arial, sans-serif;
-// }
-// `
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: ${props => props.theme.background};
+    font-family: 'HelveticaNeue Thin', Helvetica, Arial, sans-serif;
+  }
+  h1 {
+    color: ${props => props.theme.primary};
+  }
+}`
 
 class Layout extends Component {
   state = {
     darkThemeToggle: false,
+  }
+
+  componentDidMount() {
+    const localStorageRef = localStorage.getItem('veryaustin-dark-theme')
+    if (localStorageRef) {
+      this.setState({ darkThemeToggle: JSON.parse(localStorageRef) })
+    }
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem(
+      'veryaustin-dark-theme',
+      JSON.stringify(this.state.darkThemeToggle)
+    )
   }
 
   toggleTheme = () => {
@@ -84,9 +101,12 @@ class Layout extends Component {
                 this.state.darkThemeToggle ? theme.nightTheme : theme.dayTheme
               }
             >
-              <div>{children}</div>
+              <>
+                <GlobalStyle />
+                <div>{children}</div>
+                <button onClick={this.toggleTheme}>Toggle</button>
+              </>
             </ThemeProvider>
-            <button onClick={this.toggleTheme}>Toggle</button>
           </>
         )}
       />
