@@ -5,8 +5,6 @@ import styled from 'styled-components'
 const StyledDiv = styled.div`
   background-color: ${props => props.theme.background};
   transition-property: background-color;
-  /* transition-duration: 0.2s;
-  transition-timing-function: ease-in; */
 `
 
 const SecondPage = () => (
