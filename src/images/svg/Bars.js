@@ -14,7 +14,7 @@ const BarsSVG = styled.svg`
     display: none;
   }
 `
-const Bars = ({ toggleNav, showNav }) => {
+const Bars = ({ toggleNav }) => {
   return (
     <BarsSVG onClick={toggleNav} xmlns="http://www.w3.org/2000/svg">
       <path

@@ -5,6 +5,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import theme from '../styles/theme'
 import Header from '../components/Header'
+import Nav from '../components/Nav'
 import '../styles/main.scss'
 
 const GlobalStyle = createGlobalStyle`
@@ -31,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
 
 class Layout extends Component {
   state = {
-    toggleDarkTheme: false,
+    darkTheme: false,
   }
 
   static propTypes = {
@@ -41,29 +42,27 @@ class Layout extends Component {
   componentDidMount() {
     const localStorageRef = localStorage.getItem('veryaustin-theme')
     if (localStorageRef) {
-      this.setState({ toggleDarkTheme: JSON.parse(localStorageRef) })
+      this.setState({ darkTheme: JSON.parse(localStorageRef) })
     }
   }
 
   componentDidUpdate() {
     localStorage.setItem(
       'veryaustin-theme',
-      JSON.stringify(this.state.toggleDarkTheme)
+      JSON.stringify(this.state.darkTheme)
     )
   }
 
-  toggleTheme = () => {
+  handleThemeToggle = () => {
     this.setState(prevState => ({
-      toggleDarkTheme: !prevState.toggleDarkTheme,
+      darkTheme: !prevState.darkTheme,
     }))
   }
 
-  // handleNavClick = () => {
-  //   this.setState(prevState => ({ toggleNav: false }))
-  // }
-
   render() {
     const { children } = this.props
+    const { darkTheme } = this.state
+
     return (
       <StaticQuery
         query={graphql`
@@ -76,7 +75,7 @@ class Layout extends Component {
           }
         `}
         render={data => (
-          <>
+          <Fragment>
             <Helmet
               title={data.site.siteMetadata.title}
               meta={[
@@ -116,20 +115,20 @@ class Layout extends Component {
               <html lang="en" />
             </Helmet>
             <ThemeProvider
-              theme={
-                this.state.toggleDarkTheme ? theme.darkTheme : theme.lightTheme
-              }
+              theme={darkTheme ? theme.darkTheme : theme.lightTheme}
             >
               <Fragment>
                 <GlobalStyle />
-                <Header />
-                <div style={{ marginTop: '70px' }}>
-                  {children}
-                  <button onClick={this.toggleTheme}>Toggle</button>
-                </div>
+                <Header>
+                  <Nav
+                    handleThemeToggle={this.handleThemeToggle}
+                    themeState={this.state.darkTheme}
+                  />
+                </Header>
+                <div style={{ marginTop: '70px' }}>{children}</div>
               </Fragment>
             </ThemeProvider>
-          </>
+          </Fragment>
         )}
       />
     )

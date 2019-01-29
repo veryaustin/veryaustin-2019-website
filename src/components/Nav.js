@@ -1,17 +1,36 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import Link from 'gatsby-link'
+import Logo from './Logo'
+import Bars from './Bars'
+import NavLink from './NavLink'
+import NavItem from './NavItem'
+import Toggle from './Toggle'
 import { device } from '../styles/mediaQueries'
 
-// TODO: Implement Toggle Button
 // FIXME: Toggle Button Placement on Mobile Page
-// TODO: Dynamic Generation of SVG (Hamburger Menu/Logo)
 // TODO: Animate Logo?
 // TODO: Animate menu transition
 // TODO: Implement Header with burred background
 
+const NavBar = styled.nav`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 30px 1fr;
+  grid-template-areas:
+    'logo bars'
+    'menu .';
+  padding: 20px;
+
+  @media ${device.desktop} {
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: 'logo menu';
+    align-items: center;
+  }
+`
+
 const NavMenu = styled.ul`
-  display: ${props => (props.showNav === true ? 'grid' : 'none')};
+  display: ${props => (props.navShow === true ? 'grid' : 'none')};
   grid-area: menu;
   height: calc(100vh - 30px);
   padding: 0;
@@ -32,64 +51,72 @@ const NavMenu = styled.ul`
     font-size: 1em;
   }
 `
-
-const NavItem = styled.li`
-  align-self: center;
-  @media ${device.desktop} {
-    margin-left: 1.75rem;
-  }
-`
-
-const NavLink = styled(Link)`
-  color: ${props => props.theme.navLinkColor};
-  text-decoration: none;
-  padding-bottom: 2px;
-  border-bottom: none;
-  &:hover,
-  &:active {
-    color: ${props => props.theme.navLinkActiveColor};
-    border-bottom: 3px solid ${props => props.theme.navLinkActiveColor};
-  }
-`
-
 class Nav extends Component {
+  state = {
+    navShow: false,
+  }
+
+  static propTypes = {
+    handleThemeToggle: PropTypes.func,
+    themeState: PropTypes.bool,
+  }
+
+  handleNavShow = () => {
+    this.setState(prevState => ({
+      navShow: !prevState.navShow,
+    }))
+  }
+
+  handleNavClick = () => {
+    this.setState(prevState => ({
+      navShow: false,
+    }))
+  }
+
   render() {
-    const { showNav, handleNavClick } = this.props
+    const { handleThemeToggle, themeState } = this.props
     return (
-      <NavMenu showNav={showNav}>
-        <NavItem>
-          <NavLink to="/" onClick={handleNavClick}>
+      <NavBar>
+        <Logo alt="Very Austin Logo" />
+        <Bars alt="Menu" handleNavShow={this.handleNavShow} />
+        <NavMenu navShow={this.state.navShow}>
+          <NavLink to="/" onClick={this.handleNavClick}>
             Home
           </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/page-2" onClick={handleNavClick}>
+          <NavLink to="/page-2" onClick={this.handleNavClick}>
             Work
           </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/page-2" onClick={handleNavClick}>
+          <NavLink to="/page-2" onClick={this.handleNavClick}>
             About
           </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/page-2" onClick={handleNavClick}>
+          <NavLink to="/page-2" onClick={this.handleNavClick}>
             Writing
           </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/page-2" onClick={handleNavClick}>
+          <NavLink to="/page-2" onClick={this.handleNavClick}>
             Now
           </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/page-2" onClick={handleNavClick}>
+          <NavLink to="/page-2" onClick={this.handleNavClick}>
             Contact
           </NavLink>
-        </NavItem>
-      </NavMenu>
+          <NavItem>
+            <Toggle
+              handleThemeToggle={handleThemeToggle}
+              themeState={themeState}
+            />
+          </NavItem>
+        </NavMenu>
+      </NavBar>
     )
   }
+}
+
+NavMenu.propTypes = {
+  navShow: PropTypes.bool.isRequired,
+}
+
+NavLink.propTypes = {
+  to: PropTypes.string,
+  onClick: PropTypes.func,
 }
 
 export default Nav
