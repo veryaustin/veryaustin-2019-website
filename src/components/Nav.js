@@ -8,11 +8,6 @@ import NavItem from './NavItem'
 import Toggle from './Toggle'
 import { device } from '../styles/mediaQueries'
 
-// FIXME: Toggle Button Placement on Mobile Page
-// TODO: Animate Logo?
-// TODO: Animate menu transition
-// TODO: Implement Header with burred background
-
 const NavBar = styled.nav`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -41,9 +36,11 @@ const NavMenu = styled.ul`
   @media ${device.phoneLarge} {
     font-size: 1.9em;
   }
+
   @media ${device.tablet} {
     font-size: 2.5em;
   }
+
   @media ${device.desktop} {
     display: flex;
     height: auto;
