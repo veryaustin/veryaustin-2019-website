@@ -15,7 +15,7 @@ const lightTheme = {
 const darkTheme = {
   primary: '#ffffff',
   highlight: '#1859a6',
-  background: '#212121',
+  background: '#111111',
   navLinkColor: '#ffffff',
   navLinkHoverColor: '#1859a6',
   navLinkActiveColor: '#1859a6',
