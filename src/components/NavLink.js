@@ -12,7 +12,10 @@ const styledLink = styled(Link).attrs({
   text-decoration: none;
   padding-bottom: 2px;
   border-bottom: none;
-  &:hover,
+  &:hover {
+    color: ${props => props.theme.navLinkHoverColor};
+    border-bottom: 3px solid ${props => props.theme.navLinkHoverColor};
+  }
   &.${activeClassName} {
     color: ${props => props.theme.navLinkActiveColor};
     border-bottom: 3px solid ${props => props.theme.navLinkActiveColor};
