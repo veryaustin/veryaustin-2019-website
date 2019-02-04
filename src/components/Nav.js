@@ -32,6 +32,7 @@ const NavMenu = styled.ul`
   margin: 0;
   list-style: none;
   font-size: 1.5em;
+  font-weight: 300;
 
   @media ${device.phoneLarge} {
     font-size: 1.9em;
@@ -80,19 +81,19 @@ class Nav extends Component {
           <NavLink to="/" onClick={this.handleNavClick}>
             Home
           </NavLink>
-          <NavLink to="/page-2" onClick={this.handleNavClick}>
+          <NavLink to="#work" onClick={this.handleNavClick}>
             Work
           </NavLink>
-          <NavLink to="/page-2" onClick={this.handleNavClick}>
+          <NavLink to="#about" onClick={this.handleNavClick}>
             About
           </NavLink>
-          <NavLink to="/page-2" onClick={this.handleNavClick}>
+          <NavLink to="#writing" onClick={this.handleNavClick}>
             Writing
           </NavLink>
-          <NavLink to="/page-2" onClick={this.handleNavClick}>
+          <NavLink to="/now" onClick={this.handleNavClick}>
             Now
           </NavLink>
-          <NavLink to="/page-2" onClick={this.handleNavClick}>
+          <NavLink to="#contact" onClick={this.handleNavClick}>
             Contact
           </NavLink>
           <NavItem>

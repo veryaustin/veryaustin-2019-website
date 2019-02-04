@@ -6,6 +6,9 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import theme from '../styles/theme'
 import Header from '../components/Header'
 import Nav from '../components/Nav'
+import Logo from '../images/svg/logo.svg'
+import Now from '../images/svg/now.svg'
+import Content from '../components/Content'
 import '../styles/main.scss'
 
 const GlobalStyle = createGlobalStyle`
@@ -19,11 +22,14 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     background-color: ${props => props.theme.background};
-    font-family: 'HelveticaNeue Thin', 'Helvetica', 'Arial', sans-serif;
-    display: grid;
-  }
-  h1 {
-    color: ${props => props.theme.primary};
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+    background-image: url(${Logo});
+    background-attachment: fixed;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-weight: 400;
+    }
   }
   #___gatsby {
     display: grid;
@@ -125,7 +131,7 @@ class Layout extends Component {
                     themeState={this.state.darkTheme}
                   />
                 </Header>
-                <div style={{ marginTop: '70px' }}>{children}</div>
+                <Content>{children}</Content>
               </Fragment>
             </ThemeProvider>
           </Fragment>

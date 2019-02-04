@@ -19,7 +19,7 @@ const darkTheme = {
   navLinkColor: '#ffffff',
   navLinkHoverColor: '#1859a6',
   navLinkActiveColor: '#1859a6',
-  menuBackgroundColor: '#333333',
+  menuBackgroundColor: '#111111',
   contentColor: '#dbdbdb',
   linkColor: '#1859a6',
   greetingTag: '#a6a6a6',
