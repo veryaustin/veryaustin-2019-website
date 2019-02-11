@@ -25,12 +25,9 @@ const styledLink = styled(Link).attrs({
 const withLink = LinkComponent => {
   return class NavLink extends Component {
     render() {
-      const props = {
-        ...this.props,
-      }
       return (
         <NavItem>
-          <LinkComponent {...props} />
+          <LinkComponent {...this.props} />
         </NavItem>
       )
     }
