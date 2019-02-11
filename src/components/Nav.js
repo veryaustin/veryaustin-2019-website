@@ -72,30 +72,20 @@ class Nav extends Component {
   }
 
   render() {
-    const { handleThemeToggle, themeState } = this.props
+    const { navLinks, handleThemeToggle, themeState } = this.props
     return (
       <NavBar>
         <Logo alt="Very Austin Logo" />
         <Bars alt="Menu" handleNavShow={this.handleNavShow} />
         <NavMenu navShow={this.state.navShow}>
-          <NavLink to="/" onClick={this.handleNavClick}>
-            Home
-          </NavLink>
-          <NavLink to="#work" onClick={this.handleNavClick}>
-            Work
-          </NavLink>
-          <NavLink to="#about" onClick={this.handleNavClick}>
-            About
-          </NavLink>
-          <NavLink to="#writing" onClick={this.handleNavClick}>
-            Writing
-          </NavLink>
-          <NavLink to="/now" onClick={this.handleNavClick}>
-            Now
-          </NavLink>
-          <NavLink to="#contact" onClick={this.handleNavClick}>
-            Contact
-          </NavLink>
+          {navLinks.map(item => {
+            const { name, link } = item
+            return (
+              <NavLink key={name} to={link} onClick={this.handleNavClick}>
+                {name}
+              </NavLink>
+            )
+          })}
           <NavItem>
             <Toggle
               handleThemeToggle={handleThemeToggle}
@@ -106,6 +96,12 @@ class Nav extends Component {
       </NavBar>
     )
   }
+}
+
+Nav.propTypes = {
+  navLinks: PropTypes.array,
+  handleThemeToggle: PropTypes.func,
+  themeState: PropTypes.bool,
 }
 
 NavMenu.propTypes = {
