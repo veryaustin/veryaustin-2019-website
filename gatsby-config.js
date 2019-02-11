@@ -2,6 +2,14 @@ module.exports = {
   siteMetadata: {
     title: `Very Austin`,
     description: `Web development portfolio for Austin Lauritsen`,
+    navLinks: [
+      { name: 'Home', link: '/' },
+      { name: 'Work', link: '#work' },
+      { name: 'About', link: '#about' },
+      { name: 'Writing', link: '#writing' },
+      { name: 'Now', link: '/now' },
+      { name: 'Contact', link: '#contact' },
+    ],
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -13,6 +21,30 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `workcontent`,
+        path: `${__dirname}/src/content/`,
+      },
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          { resolve: `gatsby-remark-relative-images` },
+          { resolve: `gatsby-remark-images` },
+          {
+            resolve: 'gatsby-remark-embed-video',
+            options: {
+              related: false,
+              noIframeBorder: true,
+            },
+          },
+          'gatsby-remark-responsive-iframe',
+        ],
       },
     },
     'gatsby-transformer-sharp',

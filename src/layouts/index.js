@@ -17,9 +17,11 @@ const GlobalStyle = createGlobalStyle`
   *:after {
     box-sizing: inherit;
   }
+
   html {
     box-sizing: border-box;
   }
+
   body {
     background-color: ${props => props.theme.background};
     background-size: 60%;
@@ -29,8 +31,8 @@ const GlobalStyle = createGlobalStyle`
     background-attachment: fixed;
     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-weight: 400;
-    }
   }
+
   #___gatsby {
     display: grid;
   }
@@ -68,7 +70,6 @@ class Layout extends Component {
   render() {
     const { children } = this.props
     const { darkTheme } = this.state
-
     return (
       <StaticQuery
         query={graphql`
@@ -76,6 +77,10 @@ class Layout extends Component {
             site {
               siteMetadata {
                 title
+                navLinks {
+                  name
+                  link
+                }
               }
             }
           }
@@ -129,6 +134,7 @@ class Layout extends Component {
                   <Nav
                     handleThemeToggle={this.handleThemeToggle}
                     themeState={this.state.darkTheme}
+                    navLinks={data.site.siteMetadata.navLinks}
                   />
                 </Header>
                 <Content>{children}</Content>
