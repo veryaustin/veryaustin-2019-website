@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Logo from './Logo'
 import Bars from './Bars'
+import { Link } from 'gatsby'
 import NavLink from './NavLink'
 import NavItem from './NavItem'
 import Toggle from './Toggle'
@@ -75,7 +76,9 @@ class Nav extends Component {
     const { navLinks, handleThemeToggle, themeState } = this.props
     return (
       <NavBar>
-        <Logo alt="Very Austin Logo" />
+        <Link to="/">
+          <Logo alt="Very Austin Logo" />
+        </Link>
         <Bars alt="Menu" handleNavShow={this.handleNavShow} />
         <NavMenu navShow={this.state.navShow}>
           {navLinks.map(item => {
