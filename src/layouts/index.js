@@ -7,6 +7,7 @@ import theme from '../styles/theme'
 import Header from '../components/Header'
 import Nav from '../components/Nav'
 import Logo from '../images/svg/logo.svg'
+// eslint-disable-next-line
 import Now from '../images/svg/now.svg'
 import Content from '../components/Content'
 import '../styles/main.scss'

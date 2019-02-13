@@ -8,7 +8,7 @@ const lightTheme = {
   menuBackgroundColor: '#ffffff',
   contentColor: '#000000',
   linkColor: '#1859a6',
-  greetingTag: '#1859a6',
+  greetingTag: '#a6a6a6',
   greetingText: '#000000',
 }
 

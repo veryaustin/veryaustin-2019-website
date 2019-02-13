@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { graphql } from 'gatsby'
+import Greeting from '../components/Greeting'
 import Section from '../components/Section'
 import PostLink from '../components/PostLink'
 
@@ -10,11 +11,13 @@ const IndexPage = ({ data }) => {
     .filter(edge => !!edge.node.frontmatter.title)
     .map(edge => {
       const {
+        id,
         frontmatter: { title, subtitle, technology },
         html,
       } = edge.node
       return (
         <Section
+          key={id}
           title={title}
           subtitle={subtitle}
           technology={technology}
@@ -27,43 +30,38 @@ const IndexPage = ({ data }) => {
 
   // About Section
   const about = data.about.edges.map(edge => {
-    const { html } = edge.node
-    return <div dangerouslySetInnerHTML={{ __html: html }} />
+    const {
+      id,
+      frontmatter: { technology },
+      html,
+    } = edge.node
+    return (
+      <Section key={id} technology={technology} html={html}>
+        Technologies, Tools & Services I’ve Used:
+      </Section>
+    )
   })
 
   // Writing Section
   const writing = data.writing.edges
     .filter(edge => !!edge.node.frontmatter.date)
-    .map(edge => (
-      <PostLink className="box" key={edge.node.id} post={edge.node} />
-    ))
+    .map(edge => {
+      const {
+        node,
+        node: { id },
+      } = edge
+      return <PostLink key={id} className="box" post={node} />
+    })
 
   // Contact Section
   const contact = data.contact.edges.map(edge => {
-    const { html } = edge.node
-    return <div dangerouslySetInnerHTML={{ __html: html }} />
+    const { id, html } = edge.node
+    return <div key={id} dangerouslySetInnerHTML={{ __html: html }} />
   })
 
   return (
     <>
-      <article id="home">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
-          quo voluptates repudiandae aperiam ducimus veniam pariatur incidunt,
-          numquam corporis soluta nobis itaque nam voluptas repellendus
-          voluptatum animi esse amet eius. Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Perspiciatis quo voluptates repudiandae
-          aperiam ducimus veniam pariatur incidunt, numquam corporis soluta
-          nobis itaque nam voluptas repellendus voluptatum animi esse amet eius.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
-          quo voluptates repudiandae aperiam ducimus veniam pariatur incidunt,
-          numquam corporis soluta nobis itaque nam voluptas repellendus
-          voluptatum animi esse amet eius. Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Perspiciatis quo voluptates repudiandae
-          aperiam ducimus veniam pariatur incidunt, numquam corporis soluta
-          nobis itaque
-        </p>
-      </article>
+      <Greeting id="home">My name is Austin and I build for the web.</Greeting>
       <article id="work">
         <h1>Things I've Made</h1>
         {work}
@@ -117,6 +115,7 @@ export const query = graphql`
     ) {
       edges {
         node {
+          id
           frontmatter {
             title
             subtitle
@@ -129,10 +128,14 @@ export const query = graphql`
       }
     }
     about: allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/content/bio/" } }
+      filter: { fileAbsolutePath: { regex: "/content/about/" } }
     ) {
       edges {
         node {
+          id
+          frontmatter {
+            technology
+          }
           html
         }
       }
@@ -144,6 +147,7 @@ export const query = graphql`
     ) {
       edges {
         node {
+          id
           frontmatter {
             title
             date(formatString: "MMMM Do, YYYY")
@@ -161,6 +165,7 @@ export const query = graphql`
     ) {
       edges {
         node {
+          id
           html
         }
       }

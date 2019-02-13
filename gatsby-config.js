@@ -35,7 +35,14 @@ module.exports = {
       options: {
         plugins: [
           { resolve: `gatsby-remark-relative-images` },
-          { resolve: `gatsby-remark-images` },
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              linkImagesToOriginal: false,
+              withWebp: true,
+              backgroundColor: 'transparent',
+            },
+          },
           {
             resolve: 'gatsby-remark-embed-video',
             options: {

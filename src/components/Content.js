@@ -7,7 +7,6 @@ const StyledDiv = styled.div`
   margin-top: 70px;
   grid-row-gap: 100px;
   padding: 20px;
-
   h1,
   h2 {
     color: ${props => props.theme.primary};
@@ -26,7 +25,8 @@ const StyledDiv = styled.div`
   h2,
   h3,
   h4,
-  p {
+  p,
+  code {
     font-weight: 300;
   }
 
