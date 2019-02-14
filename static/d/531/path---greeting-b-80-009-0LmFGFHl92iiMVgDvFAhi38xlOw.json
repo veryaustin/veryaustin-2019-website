@@ -1,0 +1,1 @@
+{"data":{"markdownRemark":{"html":"<pre><code class=\"language-html\">&#x3C;greeting>\n    `&#x3C;span>`My name is Austin and I build for the web.`&#x3C;/span>`\n&#x3C;/greeting>\nA backtick-delimited string in a code span: `` `foo` ``\n</code></pre>","frontmatter":{"title":"Greeting","date":null}}},"pageContext":{"slug":"/greeting/"}}

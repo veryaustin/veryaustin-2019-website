@@ -1,0 +1,1 @@
+{"data":{"markdownRemark":{"html":"<pre><code>&#x3C;greeting>\n</code></pre>\n<p><code>&#x3C;span></code>\nMy name is Austin and I build for the web.\n<code>&#x3C;/span></code></p>\n<pre><code>&#x3C;/greeting>\n</code></pre>","frontmatter":{"title":"Greeting","date":null}}},"pageContext":{"slug":"/greeting/"}}

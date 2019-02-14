@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{166:function(e,n,t){"use strict";t.r(n);var a=t(0),o=t.n(a),c=t(39);n.default=function(){return o.a.createElement("div",null,o.a.createElement("h1",null,"Testing Index Page Component"),o.a.createElement(c.Link,{to:"/page-2/"},"Go to page 2"))}}}]);
+//# sourceMappingURL=component---src-pages-index-js-20d7aca5479e19cf2bb6.js.map
