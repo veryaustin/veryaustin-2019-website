@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import { device } from '../styles/mediaQueries'
 
 const Article = styled.article`
   height: calc(100vh - 140px);
   display: grid;
   align-items: center;
+  max-width: 90%;
   code {
     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 3.25em;
@@ -15,6 +17,9 @@ const Article = styled.article`
       position: relative;
       left: 10%;
     }
+  }
+  @media ${device.desktop} {
+    max-width: 100%;
   }
 `
 
