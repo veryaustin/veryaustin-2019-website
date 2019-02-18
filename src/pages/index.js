@@ -73,7 +73,6 @@ const IndexPage = ({ data }) => {
       <article id="writing">
         <h1>Things I've Written</h1>
         {writing}
-        <Link to="/writing">See All Writing</Link>
       </article>
       <article id="now">
         <h1>Now</h1>
@@ -142,7 +141,6 @@ export const query = graphql`
     }
     writing: allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "/content/writing/" } }
-      limit: 10
       sort: { order: DESC, fields: [frontmatter___date] }
     ) {
       edges {
