@@ -6,6 +6,7 @@ const HeaderWrapper = styled.div`
   position: fixed;
   width: 100%;
   background-color: ${props => props.theme.menuBackgroundColor};
+  z-index: 1;
 `
 
 const Header = ({ children }) => <HeaderWrapper>{children}</HeaderWrapper>
