@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import BackButton from '../components/BackButton'
 
 export default ({
   data: {
@@ -7,8 +8,12 @@ export default ({
   },
 }) => {
   const { title, date } = frontmatter
+  const handleBackClick = () => {
+    window.history.back()
+  }
   return (
     <div>
+      <BackButton onClick={handleBackClick} />
       <h1>{title}</h1>
       <h3>{date}</h3>
       <div dangerouslySetInnerHTML={{ __html: html }} />
