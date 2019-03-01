@@ -13,7 +13,7 @@ const IndexPage = ({ data }) => {
       const {
         id,
         frontmatter: { title, subtitle, technology },
-        html,
+        htmlAst,
       } = edge.node
       return (
         <Section
@@ -21,7 +21,7 @@ const IndexPage = ({ data }) => {
           title={title}
           subtitle={subtitle}
           technology={technology}
-          html={html}
+          html={htmlAst}
         >
           Tools & Technology:
         </Section>
@@ -122,7 +122,7 @@ export const query = graphql`
             repo
             technology
           }
-          html
+          htmlAst
         }
       }
     }
