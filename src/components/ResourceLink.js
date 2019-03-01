@@ -4,8 +4,6 @@ import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
 import ArrowLinkIcon from './ArrowLinkIcon'
 
-// Resource Link
-
 const StyledResourceLink = styled.div`
   margin: 10px 0;
   font-size: 1.2em;
