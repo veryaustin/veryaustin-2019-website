@@ -21,7 +21,6 @@ const StyledResourceLink = styled.div`
 `
 
 const ResourceLink = ({ children, external, to }) => {
-  console.log(external)
   return external ? (
     <StyledResourceLink>
       <a href={to} target="_blank" rel="noopener noreferrer">
