@@ -39,7 +39,7 @@ export default ResourceLink
 
 ResourceLink.propTypes = {
   children: PropTypes.array.isRequired,
-  external: PropTypes.bool,
+  external: PropTypes.string,
   to: PropTypes.string,
 }
 
