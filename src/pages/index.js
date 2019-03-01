@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import Greeting from '../components/Greeting'
 import Section from '../components/Section'
 import PostLink from '../components/PostLink'
+import ResourceLink from '../components/ResourceLink'
 
 const IndexPage = ({ data }) => {
   // Work/Projects Section
@@ -33,10 +34,10 @@ const IndexPage = ({ data }) => {
     const {
       id,
       frontmatter: { technology },
-      html,
+      htmlAst,
     } = edge.node
     return (
-      <Section key={id} technology={technology} html={html}>
+      <Section key={id} technology={technology} html={htmlAst}>
         Technologies, Tools & Services I’ve Used:
       </Section>
     )
@@ -83,18 +84,20 @@ const IndexPage = ({ data }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            now
+            {' '}
+            now.{' '}
           </a>
-          . Inspired by
+          Inspired by
           <a
             href="https://sivers.org"
             target="_blank"
             rel="noopener noreferrer"
           >
+            {' '}
             Derek Sivers
           </a>
         </p>
-        <Link to="/now">Visit Now Page</Link>
+        <ResourceLink to="/now">Visit Now Page</ResourceLink>
       </article>
       <article id="contact">
         <h1>Contact</h1>
@@ -135,7 +138,7 @@ export const query = graphql`
           frontmatter {
             technology
           }
-          html
+          htmlAst
         }
       }
     }

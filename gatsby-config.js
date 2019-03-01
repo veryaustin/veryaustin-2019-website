@@ -53,7 +53,7 @@ module.exports = {
           'gatsby-remark-responsive-iframe',
           {
             resolve: `gatsby-remark-component`,
-            options: { components: ['project-link'] },
+            options: { components: ['resource-link'] },
           },
         ],
       },

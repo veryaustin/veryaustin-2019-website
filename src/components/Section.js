@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import rehypeReact from 'rehype-react'
 import Tools from './tools'
-import ProjectLink from './ProjectLink'
+import ResourceLink from './ResourceLink'
 
 const StyledSection = styled.section`
   margin: 50px 0;
@@ -12,7 +12,7 @@ const StyledSection = styled.section`
 const Section = ({ children, title, subtitle, technology, html }) => {
   const renderAst = new rehypeReact({
     createElement: React.createElement,
-    components: { 'project-link': ProjectLink },
+    components: { 'resource-link': ResourceLink },
   }).Compiler
 
   return (
