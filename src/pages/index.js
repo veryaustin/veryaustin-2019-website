@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
 import Greeting from '../components/Greeting'
 import Section from '../components/Section'
@@ -62,20 +62,19 @@ const IndexPage = ({ data }) => {
       html,
     } = edge.node
 
-    // Destructure contactInfo Object
-    const contactTiles = contactInfo.map(({ id, name, link }) => {
+    const contactTiles = contactInfo.map(({ name, link }, index) => {
       return (
-        <a href={link} target="_blank" rel="noopener noreferrer">
-          <Tile key={id} icon={name} />
+        <a key={index} href={link} target="_blank" rel="noopener noreferrer">
+          <Tile icon={name} />
         </a>
       )
     })
 
     return (
-      <>
-        <div key={id} dangerouslySetInnerHTML={{ __html: html }} />
+      <Fragment key={id}>
+        <div dangerouslySetInnerHTML={{ __html: html }} />
         <StyledGrid>{contactTiles}</StyledGrid>
-      </>
+      </Fragment>
     )
   })
 
