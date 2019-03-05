@@ -79,7 +79,7 @@ const IndexPage = ({ data }) => {
   })
 
   return (
-    <>
+    <Fragment>
       <Greeting id="home">My name is Austin and I build for the web.</Greeting>
       <article id="work">
         <h1>Things I've Made</h1>
@@ -121,7 +121,7 @@ const IndexPage = ({ data }) => {
         <h1>Connect</h1>
         {connect}
       </article>
-    </>
+    </Fragment>
   )
 }
 
