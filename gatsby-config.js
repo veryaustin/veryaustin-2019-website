@@ -8,7 +8,7 @@ module.exports = {
       { name: 'About', link: '#about' },
       { name: 'Writing', link: '#writing' },
       { name: 'Now', link: '/now' },
-      { name: 'Contact', link: '#contact' },
+      { name: 'Connect', link: '#connect' },
     ],
   },
   plugins: [

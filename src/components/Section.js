@@ -9,7 +9,7 @@ const StyledSection = styled.section`
   margin: 50px 0;
 `
 
-const Section = ({ children, title, subtitle, technology, html }) => {
+const Section = ({ children, title, subtitle, tiles, html }) => {
   const renderAst = new rehypeReact({
     createElement: React.createElement,
     components: { 'resource-link': ResourceLink },
@@ -24,7 +24,7 @@ const Section = ({ children, title, subtitle, technology, html }) => {
       ) : (
         <div dangerouslySetInnerHTML={{ __html: html }} />
       )}
-      <Tools tools={technology}>{children}</Tools>
+      <Tools tools={tiles}>{children}</Tools>
     </StyledSection>
   )
 }
@@ -33,7 +33,7 @@ Section.propTypes = {
   children: PropTypes.string.isRequired,
   title: PropTypes.string,
   subtitle: PropTypes.string,
-  technology: PropTypes.array,
+  tiles: PropTypes.array,
   html: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 

@@ -1,10 +1,10 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import { graphql } from 'gatsby'
 import Greeting from '../components/Greeting'
 import Section from '../components/Section'
 import PostLink from '../components/PostLink'
 import ResourceLink from '../components/ResourceLink'
+import { Tile, StyledGrid } from '../components/tool-tiles'
 
 const IndexPage = ({ data }) => {
   // Work/Projects Section
@@ -13,7 +13,7 @@ const IndexPage = ({ data }) => {
     .map(edge => {
       const {
         id,
-        frontmatter: { title, subtitle, technology },
+        frontmatter: { title, subtitle, tiles },
         htmlAst,
       } = edge.node
       return (
@@ -21,7 +21,7 @@ const IndexPage = ({ data }) => {
           key={id}
           title={title}
           subtitle={subtitle}
-          technology={technology}
+          tiles={tiles}
           html={htmlAst}
         >
           Tools & Technology:
@@ -33,11 +33,11 @@ const IndexPage = ({ data }) => {
   const about = data.about.edges.map(edge => {
     const {
       id,
-      frontmatter: { technology },
+      frontmatter: { tiles },
       htmlAst,
     } = edge.node
     return (
-      <Section key={id} technology={technology} html={htmlAst}>
+      <Section key={id} tiles={tiles} html={htmlAst}>
         Technologies, Tools & Services I’ve Used:
       </Section>
     )
@@ -54,10 +54,29 @@ const IndexPage = ({ data }) => {
       return <PostLink key={id} className="box" post={node} />
     })
 
-  // Contact Section
-  const contact = data.contact.edges.map(edge => {
-    const { id, html } = edge.node
-    return <div key={id} dangerouslySetInnerHTML={{ __html: html }} />
+  // Connect Section
+  const connect = data.connect.edges.map(edge => {
+    const {
+      id,
+      frontmatter: { contactInfo },
+      html,
+    } = edge.node
+
+    // Destructure contactInfo Object
+    const contactTiles = contactInfo.map(({ id, name, link }) => {
+      return (
+        <a href={link} target="_blank" rel="noopener noreferrer">
+          <Tile key={id} icon={name} />
+        </a>
+      )
+    })
+
+    return (
+      <>
+        <div key={id} dangerouslySetInnerHTML={{ __html: html }} />
+        <StyledGrid>{contactTiles}</StyledGrid>
+      </>
+    )
   })
 
   return (
@@ -99,9 +118,9 @@ const IndexPage = ({ data }) => {
         </p>
         <ResourceLink to="/now">Visit Now Page</ResourceLink>
       </article>
-      <article id="contact">
-        <h1>Contact</h1>
-        {contact}
+      <article id="connect">
+        <h1>Connect</h1>
+        {connect}
       </article>
     </>
   )
@@ -123,7 +142,7 @@ export const query = graphql`
             subtitle
             url
             repo
-            technology
+            tiles
           }
           htmlAst
         }
@@ -136,7 +155,7 @@ export const query = graphql`
         node {
           id
           frontmatter {
-            technology
+            tiles
           }
           htmlAst
         }
@@ -161,12 +180,18 @@ export const query = graphql`
         }
       }
     }
-    contact: allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/content/contact/" } }
+    connect: allMarkdownRemark(
+      filter: { fileAbsolutePath: { regex: "/content/connect/" } }
     ) {
       edges {
         node {
           id
+          frontmatter {
+            contactInfo {
+              name
+              link
+            }
+          }
           html
         }
       }
