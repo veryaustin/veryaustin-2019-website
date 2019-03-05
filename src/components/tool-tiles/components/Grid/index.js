@@ -1,3 +1,3 @@
-import Grid from './Grid'
+import { Grid, StyledGrid } from './Grid'
 
-export default Grid
+export { Grid, StyledGrid }

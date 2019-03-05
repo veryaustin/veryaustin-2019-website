@@ -20,9 +20,15 @@ const StyledTile = styled.div`
   }
 `
 
-const Tile = ({ icon }) => {
+const Tile = ({ icon, to }) => {
   const { color } = paths[icon]
-  return (
+  return to ? (
+    <a href={to}>
+      <StyledTile color={color}>
+        <Icon icon={icon} color="#ffffff" />
+      </StyledTile>
+    </a>
+  ) : (
     <StyledTile color={color}>
       <Icon icon={icon} color="#ffffff" />
     </StyledTile>
