@@ -36,11 +36,11 @@ const ResourceLink = ({ children, external, to }) => {
 export default ResourceLink
 
 ResourceLink.propTypes = {
-  children: PropTypes.array.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
   external: PropTypes.string,
   to: PropTypes.string,
 }
 
 ResourceLink.defaultProps = {
-  external: false,
+  external: null,
 }
