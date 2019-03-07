@@ -1,0 +1,9 @@
+---
+title: "About"
+tiles:  ["html", "css", "sass", "jquery","javascript", "react", "redux", "ember", "webpack", "babel", "gulp", "grunt", "jest", "mocha", "chai", "travisci", "npm", "github", "git", "node", "bootstrap", "markdown",  "ghostcms", "adobeillustrator", "sketch", "aws", "heroku", "vscode", "slack", "trello"]
+---
+I’m Austin Lauritsen & I'm a software engineer. In 2014, I decided to venture out on my own away from my project management & IT related career path and focus on JavaScript, React & Node.
+
+Coming from an upbringing where I was interested in music & computers, I would build websites cataloging & documenting my musical interests. I received a degree in Mass Communications (Production Technology/Audio Engineering) and spent the first part of my career transferring, documenting & archiving music recordings. In late 2010 my career path began to shift when my employer had a variety of technical challenges involving, IT, networking and web services. My curiously, coupled with a desire to automate and improve the tools I used every day, I took over responsibilities of IT & Web Services and worked with a team of developers to build the companys first customer facing portal. Within a few weeks of starting work on the customer portal project, I knew I wanted to dig deeper and become of developer. I was hooked.
+
+Outside of work, I play Jazz, Funk & Blues music with [Adam Dalton & The B-Sides](http://adamdaltonmusic.com/adam-dalton-t) and am an avid CrossFitter, both of which keep me creative and comfortable with the unknown. I’m also interested in a variety different subjects, some of which you can read about on my [Now](/now) page.
