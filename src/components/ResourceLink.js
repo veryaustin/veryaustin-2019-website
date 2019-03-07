@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
 import ArrowLinkIcon from './ArrowLinkIcon'
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
 const StyledResourceLink = styled.div`
   margin: 10px 0;
@@ -21,10 +22,10 @@ const StyledResourceLink = styled.div`
 const ResourceLink = ({ children, external, to }) => {
   return external ? (
     <StyledResourceLink>
-      <a href={to} target="_blank" rel="noopener noreferrer">
+      <OutboundLink href={to} target="_blank" rel="noopener noreferrer">
         {children}
         <ArrowLinkIcon />
-      </a>
+      </OutboundLink>
     </StyledResourceLink>
   ) : (
     <StyledResourceLink>

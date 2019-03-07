@@ -4,6 +4,7 @@ import Greeting from '../components/Greeting'
 import Section from '../components/Section'
 import PostLink from '../components/PostLink'
 import ResourceLink from '../components/ResourceLink'
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
 import { Tile, StyledGrid } from '../components/tool-tiles'
 
 const IndexPage = ({ data }) => {
@@ -64,9 +65,14 @@ const IndexPage = ({ data }) => {
 
     const contactTiles = contactInfo.map(({ name, link }, index) => {
       return (
-        <a key={index} href={link} target="_blank" rel="noopener noreferrer">
+        <OutboundLink
+          key={index}
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <Tile icon={name} />
-        </a>
+        </OutboundLink>
       )
     })
 
@@ -97,23 +103,23 @@ const IndexPage = ({ data }) => {
         <h1>Now</h1>
         <p>
           A page dedicated to what I'm doing
-          <a
+          <OutboundLink
             href="https://nownownow.com/about"
             target="_blank"
             rel="noopener noreferrer"
           >
             {' '}
             now.{' '}
-          </a>
+          </OutboundLink>
           Inspired by
-          <a
+          <OutboundLink
             href="https://sivers.org"
             target="_blank"
             rel="noopener noreferrer"
           >
             {' '}
             Derek Sivers
-          </a>
+          </OutboundLink>
         </p>
         <ResourceLink to="/now">Visit Now Page</ResourceLink>
       </article>
