@@ -67,6 +67,11 @@ const StyledDiv = styled.div`
       text-decoration: underline;
     }
   }
+
+  pre {
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
 `
 
 const Content = ({ children }) => <StyledDiv>{children}</StyledDiv>
