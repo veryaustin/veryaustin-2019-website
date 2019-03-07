@@ -44,14 +44,14 @@ Taking this re-usable component idea further, I wondered if it was possible to b
 All image assets are SVG's (with the exception of the 'About' banner) and are stored on a static assets server (http://static.veryaustin.com). I could have used Webpack to package up all of the image assets in the deployed app, but I wanted to see how performant React was when loading image assets from external locations. The 'Tools And Technology' tile logos are loaded SVG's loaded from the static assets server. The background color, URL of each logo asset, URL of the website & the title are loaded from JSON served from Firebase.
 
 An example tile looks like this:
-
-    {
-      "background_color" : "#e34c26",
-      "logo_url" : "http://static.veryaustin.com/api/images/tools/html_logo.svg",
-      "site_url" : "https://www.w3.org/TR/html5/",
-      "title" : "HTML 5"
-    }
-
+```javascript
+{
+  "background_color" : "#e34c26",
+  "logo_url" : "http://static.veryaustin.com/api/images/tools/html_logo.svg",
+  "site_url" : "https://www.w3.org/TR/html5/",
+  "title" : "HTML 5"
+}
+```
 and renders this:
 
 ![HTML5 Tile](./images/HTML5-1491874461696.png)
