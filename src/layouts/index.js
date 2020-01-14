@@ -49,7 +49,9 @@ class Layout extends Component {
   }
 
   detectTheme() {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
+    if (window.matchMedia('(prefers-color-scheme').media) {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches
+    }
   }
 
   componentDidMount() {
