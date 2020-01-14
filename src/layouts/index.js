@@ -48,10 +48,16 @@ class Layout extends Component {
     children: PropTypes.node.isRequired,
   }
 
+  detectTheme() {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+  }
+
   componentDidMount() {
     const localStorageRef = localStorage.getItem('veryaustin-theme')
     if (localStorageRef) {
       this.setState({ darkTheme: JSON.parse(localStorageRef) })
+    } else {
+      this.setState({ darkTheme: this.detectTheme() })
     }
   }
 
