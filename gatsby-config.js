@@ -4,11 +4,11 @@ module.exports = {
     description: `Web development portfolio for Austin Lauritsen`,
     navLinks: [
       { name: 'Home', link: '/' },
-      { name: 'Work', link: '#work' },
-      { name: 'About', link: '#about' },
-      { name: 'Writing', link: '#writing' },
+      { name: 'Work', link: '/#work' },
+      { name: 'About', link: '/#about' },
+      { name: 'Writing', link: '/#writing' },
       { name: 'Now', link: '/now' },
-      { name: 'Connect', link: '#connect' },
+      { name: 'Connect', link: '/#connect' },
     ],
   },
   plugins: [
