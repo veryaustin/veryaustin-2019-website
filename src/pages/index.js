@@ -4,7 +4,6 @@ import Greeting from '../components/Greeting'
 import Section from '../components/Section'
 import PostLink from '../components/PostLink'
 import ResourceLink from '../components/ResourceLink'
-import { OutboundLink } from 'gatsby-plugin-google-analytics'
 import { Tile, StyledGrid } from '../components/tool-tiles'
 
 const IndexPage = ({ data }) => {
