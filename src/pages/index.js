@@ -64,14 +64,9 @@ const IndexPage = ({ data }) => {
 
     const contactTiles = contactInfo.map(({ name, link }, index) => {
       return (
-        <OutboundLink
-          key={index}
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a key={index} href={link} target="_blank" rel="noopener noreferrer">
           <Tile icon={name} />
-        </OutboundLink>
+        </a>
       )
     })
 
@@ -102,23 +97,23 @@ const IndexPage = ({ data }) => {
         <h1>Now</h1>
         <p>
           A page dedicated to what I'm doing
-          <OutboundLink
+          <a
             href="https://nownownow.com/about"
             target="_blank"
             rel="noopener noreferrer"
           >
             {' '}
             now.{' '}
-          </OutboundLink>
+          </a>
           Inspired by
-          <OutboundLink
+          <a
             href="https://sivers.org"
             target="_blank"
             rel="noopener noreferrer"
           >
             {' '}
             Derek Sivers
-          </OutboundLink>
+          </a>
         </p>
         <ResourceLink to="/now">Visit Now Page</ResourceLink>
       </article>
