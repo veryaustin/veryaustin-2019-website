@@ -19,11 +19,13 @@ const Switch = styled.div`
       : 'linear-gradient(to right, #1759a6 0%, #397ac7 99%)'};
   overflow: hidden;
   cursor: pointer;
+
   @media ${device.tablet} {
     width: 64px;
     height: 32px;
     border-radius: 30px;
   }
+
   @media ${device.desktop} {
     width: 32px;
     height: 16px;
@@ -81,23 +83,22 @@ const Label = styled.img`
   }
 `
 
-const Toggle = ({ handleThemeToggle, themeState }) => {
+const Toggle = ({ themeState, toggleTheme }) => {
   return (
-    <div onClick={handleThemeToggle}>
-      <Switch themeState={themeState}>
-        <Cursor themeState={themeState} />
-        <Label src={themeState === true ? moon : sun} themeState={themeState} />
-      </Switch>
-    </div>
+    <Switch onClick={toggleTheme} themeState={themeState}>
+      <Cursor themeState={themeState} />
+      <Label src={themeState === true ? moon : sun} themeState={themeState} />
+    </Switch>
   )
 }
 
 Toggle.propTypes = {
-  handleThemeToggle: PropTypes.func.isRequired,
+  toggleTheme: PropTypes.func.isRequired,
   themeState: PropTypes.bool.isRequired,
 }
 
 Switch.propTypes = {
+  onClick: PropTypes.func.isRequired,
   themeState: PropTypes.bool.isRequired,
 }
 

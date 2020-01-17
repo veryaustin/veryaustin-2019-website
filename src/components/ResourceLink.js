@@ -3,34 +3,37 @@ import styled from 'styled-components'
 import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
 import ArrowLinkIcon from './ArrowLinkIcon'
-import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
-const StyledResourceLink = styled.div`
+const StyledExternalLink = styled.a`
   margin: 10px 0;
   font-size: 1.2em;
   font-weight: 300;
   margin: 2px 0;
-  a {
+  color: ${props => props.theme.primary} !important;
+  &:hover {
     color: ${props => props.theme.primary};
-    &:hover {
-      color: ${props => props.theme.primary};
-      text-decoration: none;
-    }
+  }
+`
+
+const StyledInternalLink = styled(Link)`
+  margin: 10px 0;
+  font-size: 1.2em;
+  font-weight: 300;
+  margin: 2px 0;
+  color: ${props => props.theme.primary} !important;
+  &:hover {
+    color: ${props => props.theme.primary};
   }
 `
 
 const ResourceLink = ({ children, external, to }) => {
   return external ? (
-    <StyledResourceLink>
-      <OutboundLink href={to} target="_blank" rel="noopener noreferrer">
-        {children}
-        <ArrowLinkIcon />
-      </OutboundLink>
-    </StyledResourceLink>
+    <StyledExternalLink href={to} target="_blank">
+      {children}
+      <ArrowLinkIcon />
+    </StyledExternalLink>
   ) : (
-    <StyledResourceLink>
-      <Link to={to}>{children}</Link>
-    </StyledResourceLink>
+    <StyledInternalLink to={to}>{children}</StyledInternalLink>
   )
 }
 
@@ -43,5 +46,5 @@ ResourceLink.propTypes = {
 }
 
 ResourceLink.defaultProps = {
-  external: null,
+  external: undefined,
 }

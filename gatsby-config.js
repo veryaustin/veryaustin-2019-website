@@ -50,11 +50,11 @@ module.exports = {
               noIframeBorder: true,
             },
           },
-          'gatsby-remark-responsive-iframe',
           {
-            resolve: `gatsby-remark-component`,
+            resolve: 'gatsby-remark-component',
             options: { components: ['resource-link'] },
           },
+          'gatsby-remark-responsive-iframe',
         ],
       },
     },
@@ -115,13 +115,5 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`,
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: 'UA-27530361-1',
-        head: true,
-        respectDNT: true,
-      },
-    },
   ],
 }

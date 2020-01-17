@@ -5,7 +5,6 @@ import { StaticQuery, graphql } from 'gatsby'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import theme from '../styles/theme'
 import Header from '../components/Header'
-import Nav from '../components/Nav'
 import Logo from '../images/svg/logo.svg'
 // eslint-disable-next-line
 import Now from '../images/svg/now.svg'
@@ -48,13 +47,13 @@ class Layout extends Component {
     children: PropTypes.node.isRequired,
   }
 
-  detectTheme() {
+  detectTheme = () => {
     if (window.matchMedia('(prefers-color-scheme').media) {
       return window.matchMedia('(prefers-color-scheme: dark)').matches
     }
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     const localStorageRef = localStorage.getItem('veryaustin-theme')
     if (localStorageRef) {
       this.setState({ darkTheme: JSON.parse(localStorageRef) })
@@ -63,7 +62,7 @@ class Layout extends Component {
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate = () => {
     localStorage.setItem(
       'veryaustin-theme',
       JSON.stringify(this.state.darkTheme)
@@ -86,18 +85,18 @@ class Layout extends Component {
             site {
               siteMetadata {
                 title
-                navLinks {
-                  name
-                  link
-                }
               }
             }
           }
         `}
-        render={data => (
+        render={({
+          site: {
+            siteMetadata: { title },
+          },
+        }) => (
           <Fragment>
             <Helmet
-              title={data.site.siteMetadata.title}
+              title={title}
               meta={[
                 {
                   name: 'description',
@@ -139,13 +138,10 @@ class Layout extends Component {
             >
               <Fragment>
                 <GlobalStyle />
-                <Header>
-                  <Nav
-                    handleThemeToggle={this.handleThemeToggle}
-                    themeState={this.state.darkTheme}
-                    navLinks={data.site.siteMetadata.navLinks}
-                  />
-                </Header>
+                <Header
+                  themeState={this.state.darkTheme}
+                  toggleTheme={this.handleThemeToggle}
+                />
                 <Content>{children}</Content>
               </Fragment>
             </ThemeProvider>

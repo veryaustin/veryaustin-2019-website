@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
-import NavItem from './NavItem'
 
 const activeClassName = 'active'
 
@@ -26,9 +25,9 @@ const withLink = LinkComponent => {
   return class NavLink extends Component {
     render() {
       return (
-        <NavItem>
+        <li>
           <LinkComponent {...this.props} />
-        </NavItem>
+        </li>
       )
     }
   }

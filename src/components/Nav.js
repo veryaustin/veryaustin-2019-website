@@ -1,39 +1,32 @@
 import React, { Component } from 'react'
+import { StaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import Logo from './Logo'
-import Bars from './Bars'
-import { Link } from 'gatsby'
 import NavLink from './NavLink'
-import NavItem from './NavItem'
 import Toggle from './Toggle'
 import { device } from '../styles/mediaQueries'
 
 const NavBar = styled.nav`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 30px 1fr;
-  grid-template-areas:
-    'logo bars'
-    'menu .';
-  padding: 20px;
+  grid-area: nav;
+  grid-column: span 2;
+  height: calc(100vh - 32px);
+  display: ${props => (props.navShow === false ? 'none' : 'grid')};
 
   @media ${device.desktop} {
-    grid-template-columns: 1fr 2fr;
-    grid-template-areas: 'logo menu';
-    align-items: center;
+    height: 32px;
+    display: grid;
   }
 `
 
-const NavMenu = styled.ul`
-  display: ${props => (props.navShow === true ? 'grid' : 'none')};
-  grid-area: menu;
-  height: calc(100vh - 30px);
+const Menu = styled.ul`
+  display: grid;
+  align-items: center;
   padding: 0;
   margin: 0;
   list-style: none;
   font-size: 1.5em;
   font-weight: 300;
+  text-decoration: none;
 
   @media ${device.phoneLarge} {
     font-size: 1.9em;
@@ -44,76 +37,58 @@ const NavMenu = styled.ul`
   }
 
   @media ${device.desktop} {
-    display: flex;
-    height: auto;
-    justify-self: end;
-    font-size: 1em;
+    grid-template-columns: repeat(7, 1fr);
+    font-size: 1.25em;
+    height: 32px;
+    justify-items: end;
   }
 `
 class Nav extends Component {
-  state = {
-    navShow: false,
-  }
-
   static propTypes = {
-    handleThemeToggle: PropTypes.func,
+    toggleTheme: PropTypes.func,
     themeState: PropTypes.bool,
-  }
-
-  handleNavShow = () => {
-    this.setState(prevState => ({
-      navShow: !prevState.navShow,
-    }))
-  }
-
-  handleNavClick = () => {
-    this.setState(prevState => ({
-      navShow: false,
-    }))
+    handleNavClick: PropTypes.func,
+    navShowState: PropTypes.bool,
   }
 
   render() {
-    const { navLinks, handleThemeToggle, themeState } = this.props
+    const { themeState, toggleTheme, navShowState, handleNavClick } = this.props
     return (
-      <NavBar>
-        <Link to="/">
-          <Logo alt="Very Austin Logo" />
-        </Link>
-        <Bars alt="Menu" handleNavShow={this.handleNavShow} />
-        <NavMenu navShow={this.state.navShow}>
-          {navLinks.map(item => {
-            const { name, link } = item
-            return (
-              <NavLink key={name} to={link} onClick={this.handleNavClick}>
-                {name}
-              </NavLink>
-            )
-          })}
-          <NavItem>
-            <Toggle
-              handleThemeToggle={handleThemeToggle}
-              themeState={themeState}
-            />
-          </NavItem>
-        </NavMenu>
-      </NavBar>
+      <StaticQuery
+        query={graphql`
+          query NavigationQuery {
+            site {
+              siteMetadata {
+                navLinks {
+                  name
+                  link
+                }
+              }
+            }
+          }
+        `}
+        render={({
+          site: {
+            siteMetadata: { navLinks },
+          },
+        }) => (
+          <NavBar navShow={navShowState}>
+            <Menu>
+              {navLinks.map(item => {
+                const { name, link } = item
+                return (
+                  <NavLink key={name} to={link} onClick={handleNavClick}>
+                    {name}
+                  </NavLink>
+                )
+              })}
+              <Toggle themeState={themeState} toggleTheme={toggleTheme} />
+            </Menu>
+          </NavBar>
+        )}
+      />
     )
   }
-}
-
-Nav.propTypes = {
-  navLinks: PropTypes.array,
-  handleThemeToggle: PropTypes.func,
-  themeState: PropTypes.bool,
-}
-
-NavMenu.propTypes = {
-  navShow: PropTypes.bool.isRequired,
-}
-
-NavLink.propTypes = {
-  to: PropTypes.string,
-  onClick: PropTypes.func,
 }
 
 export default Nav
